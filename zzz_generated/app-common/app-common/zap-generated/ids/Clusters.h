@@ -325,6 +325,9 @@ static constexpr ClusterId Id = 0x0000042E;
 namespace RadonConcentrationMeasurement {
 static constexpr ClusterId Id = 0x0000042F;
 } // namespace RadonConcentrationMeasurement
+namespace SoilMeasurement {
+static constexpr ClusterId Id = 0x00000430;
+} // namespace SoilMeasurement
 namespace WiFiNetworkManagement {
 static constexpr ClusterId Id = 0x00000451;
 } // namespace WiFiNetworkManagement

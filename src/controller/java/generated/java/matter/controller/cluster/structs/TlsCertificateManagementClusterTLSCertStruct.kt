@@ -16,13 +16,18 @@
  */
 package matter.controller.cluster.structs
 
+import java.util.Optional
 import matter.controller.cluster.*
+import matter.tlv.AnonymousTag
 import matter.tlv.ContextSpecificTag
 import matter.tlv.Tag
 import matter.tlv.TlvReader
 import matter.tlv.TlvWriter
 
-class TlsCertificateManagementClusterTLSCertStruct(val caid: UShort, val certificate: ByteArray) {
+class TlsCertificateManagementClusterTLSCertStruct(
+  val caid: UShort,
+  val certificate: ByteArray
+) {
   override fun toString(): String = buildString {
     append("TlsCertificateManagementClusterTLSCertStruct {\n")
     append("\tcaid : $caid\n")
@@ -47,7 +52,7 @@ class TlsCertificateManagementClusterTLSCertStruct(val caid: UShort, val certifi
       tlvReader.enterStructure(tlvTag)
       val caid = tlvReader.getUShort(ContextSpecificTag(TAG_CAID))
       val certificate = tlvReader.getByteArray(ContextSpecificTag(TAG_CERTIFICATE))
-
+      
       tlvReader.exitContainer()
 
       return TlsCertificateManagementClusterTLSCertStruct(caid, certificate)

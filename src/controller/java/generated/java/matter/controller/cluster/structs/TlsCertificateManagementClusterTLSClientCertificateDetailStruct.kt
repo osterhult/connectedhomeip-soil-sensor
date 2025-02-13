@@ -16,6 +16,7 @@
  */
 package matter.controller.cluster.structs
 
+import java.util.Optional
 import matter.controller.cluster.*
 import matter.tlv.AnonymousTag
 import matter.tlv.ContextSpecificTag
@@ -26,7 +27,7 @@ import matter.tlv.TlvWriter
 class TlsCertificateManagementClusterTLSClientCertificateDetailStruct(
   val ccdid: UShort,
   val clientCertificate: ByteArray,
-  val intermediateCertificates: List<ByteArray>,
+  val intermediateCertificates: List<ByteArray>
 ) {
   override fun toString(): String = buildString {
     append("TlsCertificateManagementClusterTLSClientCertificateDetailStruct {\n")
@@ -55,29 +56,21 @@ class TlsCertificateManagementClusterTLSClientCertificateDetailStruct(
     private const val TAG_CLIENT_CERTIFICATE = 1
     private const val TAG_INTERMEDIATE_CERTIFICATES = 2
 
-    fun fromTlv(
-      tlvTag: Tag,
-      tlvReader: TlvReader,
-    ): TlsCertificateManagementClusterTLSClientCertificateDetailStruct {
+    fun fromTlv(tlvTag: Tag, tlvReader: TlvReader): TlsCertificateManagementClusterTLSClientCertificateDetailStruct {
       tlvReader.enterStructure(tlvTag)
       val ccdid = tlvReader.getUShort(ContextSpecificTag(TAG_CCDID))
       val clientCertificate = tlvReader.getByteArray(ContextSpecificTag(TAG_CLIENT_CERTIFICATE))
-      val intermediateCertificates =
-        buildList<ByteArray> {
-          tlvReader.enterArray(ContextSpecificTag(TAG_INTERMEDIATE_CERTIFICATES))
-          while (!tlvReader.isEndOfContainer()) {
-            add(tlvReader.getByteArray(AnonymousTag))
-          }
-          tlvReader.exitContainer()
-        }
-
+      val intermediateCertificates = buildList<ByteArray> {
+      tlvReader.enterArray(ContextSpecificTag(TAG_INTERMEDIATE_CERTIFICATES))
+      while(!tlvReader.isEndOfContainer()) {
+        add(tlvReader.getByteArray(AnonymousTag))
+      }
+      tlvReader.exitContainer()
+    }
+      
       tlvReader.exitContainer()
 
-      return TlsCertificateManagementClusterTLSClientCertificateDetailStruct(
-        ccdid,
-        clientCertificate,
-        intermediateCertificates,
-      )
+      return TlsCertificateManagementClusterTLSClientCertificateDetailStruct(ccdid, clientCertificate, intermediateCertificates)
     }
   }
 }

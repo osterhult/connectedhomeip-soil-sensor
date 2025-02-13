@@ -2460,6 +2460,14 @@
           "enabled": 1
         },
         {
+          "name": "Soil Measurement",
+          "code": 1072,
+          "mfgCode": null,
+          "define": "SOIL_MEASUREMENT_CLUSTER",
+          "side": "client",
+          "enabled": 1
+        },
+        {
           "name": "Thread Border Router Management",
           "code": 1106,
           "mfgCode": null,

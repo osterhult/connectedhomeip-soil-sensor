@@ -107,6 +107,7 @@
         "service-area-cluster.xml",
         "smoke-co-alarm-cluster.xml",
         "software-diagnostics-cluster.xml",
+        "soil-measurement-cluster.xml",
         "switch-cluster.xml",
         "target-navigator-cluster.xml",
         "temperature-control-cluster.xml",
@@ -685,7 +686,13 @@
             "SpeakerCapabilities",
             "Viewport"
         ],
-        "Camera AV Settings User Level Management": ["MPTZPosition"]
+        "Camera AV Settings User Level Management": ["MPTZPosition"],
+        "Soil Measurement": [
+            "SoilMoistureMeasuredValue",
+            "SoilMoistureMinMeasurableValue",
+            "SoilMoistureMaxMeasurableValue",
+            "SoilMoistureTolerance"
+        ]
     },
     "mandatoryDeviceTypes": "0x0016",
     "defaultReportingPolicy": "mandatory",

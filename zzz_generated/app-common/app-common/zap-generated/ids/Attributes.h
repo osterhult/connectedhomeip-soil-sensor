@@ -6167,6 +6167,48 @@ static constexpr AttributeId Id = Globals::Attributes::ClusterRevision::Id;
 } // namespace Attributes
 } // namespace RadonConcentrationMeasurement
 
+namespace SoilMeasurement {
+namespace Attributes {
+
+namespace SoilMoistureMeasuredValue {
+static constexpr AttributeId Id = 0x00000000;
+} // namespace SoilMoistureMeasuredValue
+
+namespace SoilMoistureMinMeasurableValue {
+static constexpr AttributeId Id = 0x00000001;
+} // namespace SoilMoistureMinMeasurableValue
+
+namespace SoilMoistureMaxMeasurableValue {
+static constexpr AttributeId Id = 0x00000002;
+} // namespace SoilMoistureMaxMeasurableValue
+
+namespace SoilMoistureTolerance {
+static constexpr AttributeId Id = 0x00000003;
+} // namespace SoilMoistureTolerance
+
+namespace GeneratedCommandList {
+static constexpr AttributeId Id = Globals::Attributes::GeneratedCommandList::Id;
+} // namespace GeneratedCommandList
+
+namespace AcceptedCommandList {
+static constexpr AttributeId Id = Globals::Attributes::AcceptedCommandList::Id;
+} // namespace AcceptedCommandList
+
+namespace AttributeList {
+static constexpr AttributeId Id = Globals::Attributes::AttributeList::Id;
+} // namespace AttributeList
+
+namespace FeatureMap {
+static constexpr AttributeId Id = Globals::Attributes::FeatureMap::Id;
+} // namespace FeatureMap
+
+namespace ClusterRevision {
+static constexpr AttributeId Id = Globals::Attributes::ClusterRevision::Id;
+} // namespace ClusterRevision
+
+} // namespace Attributes
+} // namespace SoilMeasurement
+
 namespace WiFiNetworkManagement {
 namespace Attributes {
 

@@ -16,7 +16,9 @@
  */
 package matter.controller.cluster.structs
 
+import java.util.Optional
 import matter.controller.cluster.*
+import matter.tlv.AnonymousTag
 import matter.tlv.ContextSpecificTag
 import matter.tlv.Tag
 import matter.tlv.TlvReader
@@ -27,7 +29,7 @@ class CameraAvStreamManagementClusterVideoSensorParamsStruct(
   val sensorHeight: UShort,
   val HDRCapable: Boolean,
   val maxFPS: UShort,
-  val maxHDRFPS: UShort,
+  val maxHDRFPS: UShort
 ) {
   override fun toString(): String = buildString {
     append("CameraAvStreamManagementClusterVideoSensorParamsStruct {\n")
@@ -58,26 +60,17 @@ class CameraAvStreamManagementClusterVideoSensorParamsStruct(
     private const val TAG_MAX_FPS = 3
     private const val TAG_MAX_HDRFPS = 4
 
-    fun fromTlv(
-      tlvTag: Tag,
-      tlvReader: TlvReader,
-    ): CameraAvStreamManagementClusterVideoSensorParamsStruct {
+    fun fromTlv(tlvTag: Tag, tlvReader: TlvReader): CameraAvStreamManagementClusterVideoSensorParamsStruct {
       tlvReader.enterStructure(tlvTag)
       val sensorWidth = tlvReader.getUShort(ContextSpecificTag(TAG_SENSOR_WIDTH))
       val sensorHeight = tlvReader.getUShort(ContextSpecificTag(TAG_SENSOR_HEIGHT))
       val HDRCapable = tlvReader.getBoolean(ContextSpecificTag(TAG_HDR_CAPABLE))
       val maxFPS = tlvReader.getUShort(ContextSpecificTag(TAG_MAX_FPS))
       val maxHDRFPS = tlvReader.getUShort(ContextSpecificTag(TAG_MAX_HDRFPS))
-
+      
       tlvReader.exitContainer()
 
-      return CameraAvStreamManagementClusterVideoSensorParamsStruct(
-        sensorWidth,
-        sensorHeight,
-        HDRCapable,
-        maxFPS,
-        maxHDRFPS,
-      )
+      return CameraAvStreamManagementClusterVideoSensorParamsStruct(sensorWidth, sensorHeight, HDRCapable, maxFPS, maxHDRFPS)
     }
   }
 }

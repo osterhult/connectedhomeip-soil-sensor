@@ -4937,6 +4937,8 @@ enum class Feature : uint32_t
 };
 } // namespace RadonConcentrationMeasurement
 
+namespace SoilMeasurement {} // namespace SoilMeasurement
+
 namespace WiFiNetworkManagement {} // namespace WiFiNetworkManagement
 
 namespace ThreadBorderRouterManagement {

@@ -35151,6 +35151,112 @@ struct TypeInfo
 };
 } // namespace Attributes
 } // namespace RadonConcentrationMeasurement
+namespace SoilMeasurement {
+
+namespace Attributes {
+
+namespace SoilMoistureMeasuredValue {
+struct TypeInfo
+{
+    using Type             = chip::app::DataModel::Nullable<chip::Percent>;
+    using DecodableType    = chip::app::DataModel::Nullable<chip::Percent>;
+    using DecodableArgType = const chip::app::DataModel::Nullable<chip::Percent> &;
+
+    static constexpr ClusterId GetClusterId() { return Clusters::SoilMeasurement::Id; }
+    static constexpr AttributeId GetAttributeId() { return Attributes::SoilMoistureMeasuredValue::Id; }
+    static constexpr bool MustUseTimedWrite() { return false; }
+};
+} // namespace SoilMoistureMeasuredValue
+namespace SoilMoistureMinMeasurableValue {
+struct TypeInfo
+{
+    using Type             = chip::Percent;
+    using DecodableType    = chip::Percent;
+    using DecodableArgType = chip::Percent;
+
+    static constexpr ClusterId GetClusterId() { return Clusters::SoilMeasurement::Id; }
+    static constexpr AttributeId GetAttributeId() { return Attributes::SoilMoistureMinMeasurableValue::Id; }
+    static constexpr bool MustUseTimedWrite() { return false; }
+};
+} // namespace SoilMoistureMinMeasurableValue
+namespace SoilMoistureMaxMeasurableValue {
+struct TypeInfo
+{
+    using Type             = chip::Percent;
+    using DecodableType    = chip::Percent;
+    using DecodableArgType = chip::Percent;
+
+    static constexpr ClusterId GetClusterId() { return Clusters::SoilMeasurement::Id; }
+    static constexpr AttributeId GetAttributeId() { return Attributes::SoilMoistureMaxMeasurableValue::Id; }
+    static constexpr bool MustUseTimedWrite() { return false; }
+};
+} // namespace SoilMoistureMaxMeasurableValue
+namespace SoilMoistureTolerance {
+struct TypeInfo
+{
+    using Type             = chip::Percent;
+    using DecodableType    = chip::Percent;
+    using DecodableArgType = chip::Percent;
+
+    static constexpr ClusterId GetClusterId() { return Clusters::SoilMeasurement::Id; }
+    static constexpr AttributeId GetAttributeId() { return Attributes::SoilMoistureTolerance::Id; }
+    static constexpr bool MustUseTimedWrite() { return false; }
+};
+} // namespace SoilMoistureTolerance
+namespace GeneratedCommandList {
+struct TypeInfo : public Clusters::Globals::Attributes::GeneratedCommandList::TypeInfo
+{
+    static constexpr ClusterId GetClusterId() { return Clusters::SoilMeasurement::Id; }
+};
+} // namespace GeneratedCommandList
+namespace AcceptedCommandList {
+struct TypeInfo : public Clusters::Globals::Attributes::AcceptedCommandList::TypeInfo
+{
+    static constexpr ClusterId GetClusterId() { return Clusters::SoilMeasurement::Id; }
+};
+} // namespace AcceptedCommandList
+namespace AttributeList {
+struct TypeInfo : public Clusters::Globals::Attributes::AttributeList::TypeInfo
+{
+    static constexpr ClusterId GetClusterId() { return Clusters::SoilMeasurement::Id; }
+};
+} // namespace AttributeList
+namespace FeatureMap {
+struct TypeInfo : public Clusters::Globals::Attributes::FeatureMap::TypeInfo
+{
+    static constexpr ClusterId GetClusterId() { return Clusters::SoilMeasurement::Id; }
+};
+} // namespace FeatureMap
+namespace ClusterRevision {
+struct TypeInfo : public Clusters::Globals::Attributes::ClusterRevision::TypeInfo
+{
+    static constexpr ClusterId GetClusterId() { return Clusters::SoilMeasurement::Id; }
+};
+} // namespace ClusterRevision
+
+struct TypeInfo
+{
+    struct DecodableType
+    {
+        static constexpr ClusterId GetClusterId() { return Clusters::SoilMeasurement::Id; }
+
+        CHIP_ERROR Decode(TLV::TLVReader & reader, const ConcreteAttributePath & path);
+
+        Attributes::SoilMoistureMeasuredValue::TypeInfo::DecodableType soilMoistureMeasuredValue;
+        Attributes::SoilMoistureMinMeasurableValue::TypeInfo::DecodableType soilMoistureMinMeasurableValue =
+            static_cast<chip::Percent>(0);
+        Attributes::SoilMoistureMaxMeasurableValue::TypeInfo::DecodableType soilMoistureMaxMeasurableValue =
+            static_cast<chip::Percent>(0);
+        Attributes::SoilMoistureTolerance::TypeInfo::DecodableType soilMoistureTolerance = static_cast<chip::Percent>(0);
+        Attributes::GeneratedCommandList::TypeInfo::DecodableType generatedCommandList;
+        Attributes::AcceptedCommandList::TypeInfo::DecodableType acceptedCommandList;
+        Attributes::AttributeList::TypeInfo::DecodableType attributeList;
+        Attributes::FeatureMap::TypeInfo::DecodableType featureMap           = static_cast<uint32_t>(0);
+        Attributes::ClusterRevision::TypeInfo::DecodableType clusterRevision = static_cast<uint16_t>(0);
+    };
+};
+} // namespace Attributes
+} // namespace SoilMeasurement
 namespace WiFiNetworkManagement {
 
 namespace Commands {

@@ -18,6 +18,7 @@ package matter.controller.cluster.eventstructs
 
 import java.util.Optional
 import matter.controller.cluster.*
+import matter.tlv.AnonymousTag
 import matter.tlv.ContextSpecificTag
 import matter.tlv.Tag
 import matter.tlv.TlvReader
@@ -29,18 +30,12 @@ class CameraAvStreamManagementClusterVideoStreamChangedEvent(
   val videoCodec: Optional<UByte>,
   val minFrameRate: Optional<UShort>,
   val maxFrameRate: Optional<UShort>,
-  val minResolution:
-    Optional<
-      matter.controller.cluster.structs.CameraAvStreamManagementClusterVideoResolutionStruct
-    >,
-  val maxResolution:
-    Optional<
-      matter.controller.cluster.structs.CameraAvStreamManagementClusterVideoResolutionStruct
-    >,
+  val minResolution: Optional<matter.controller.cluster.structs.CameraAvStreamManagementClusterVideoResolutionStruct>,
+  val maxResolution: Optional<matter.controller.cluster.structs.CameraAvStreamManagementClusterVideoResolutionStruct>,
   val minBitRate: Optional<UInt>,
   val maxBitRate: Optional<UInt>,
   val minFragmentLen: Optional<UShort>,
-  val maxFragmentLen: Optional<UShort>,
+  val maxFragmentLen: Optional<UShort>
 ) {
   override fun toString(): String = buildString {
     append("CameraAvStreamManagementClusterVideoStreamChangedEvent {\n")
@@ -119,94 +114,63 @@ class CameraAvStreamManagementClusterVideoStreamChangedEvent(
     private const val TAG_MIN_FRAGMENT_LEN = 9
     private const val TAG_MAX_FRAGMENT_LEN = 10
 
-    fun fromTlv(
-      tlvTag: Tag,
-      tlvReader: TlvReader,
-    ): CameraAvStreamManagementClusterVideoStreamChangedEvent {
+    fun fromTlv(tlvTag: Tag, tlvReader: TlvReader) : CameraAvStreamManagementClusterVideoStreamChangedEvent {
       tlvReader.enterStructure(tlvTag)
       val videoStreamID = tlvReader.getUShort(ContextSpecificTag(TAG_VIDEO_STREAM_ID))
-      val streamUsage =
-        if (tlvReader.isNextTag(ContextSpecificTag(TAG_STREAM_USAGE))) {
-          Optional.of(tlvReader.getUByte(ContextSpecificTag(TAG_STREAM_USAGE)))
-        } else {
-          Optional.empty()
-        }
-      val videoCodec =
-        if (tlvReader.isNextTag(ContextSpecificTag(TAG_VIDEO_CODEC))) {
-          Optional.of(tlvReader.getUByte(ContextSpecificTag(TAG_VIDEO_CODEC)))
-        } else {
-          Optional.empty()
-        }
-      val minFrameRate =
-        if (tlvReader.isNextTag(ContextSpecificTag(TAG_MIN_FRAME_RATE))) {
-          Optional.of(tlvReader.getUShort(ContextSpecificTag(TAG_MIN_FRAME_RATE)))
-        } else {
-          Optional.empty()
-        }
-      val maxFrameRate =
-        if (tlvReader.isNextTag(ContextSpecificTag(TAG_MAX_FRAME_RATE))) {
-          Optional.of(tlvReader.getUShort(ContextSpecificTag(TAG_MAX_FRAME_RATE)))
-        } else {
-          Optional.empty()
-        }
-      val minResolution =
-        if (tlvReader.isNextTag(ContextSpecificTag(TAG_MIN_RESOLUTION))) {
-          Optional.of(
-            matter.controller.cluster.structs.CameraAvStreamManagementClusterVideoResolutionStruct
-              .fromTlv(ContextSpecificTag(TAG_MIN_RESOLUTION), tlvReader)
-          )
-        } else {
-          Optional.empty()
-        }
-      val maxResolution =
-        if (tlvReader.isNextTag(ContextSpecificTag(TAG_MAX_RESOLUTION))) {
-          Optional.of(
-            matter.controller.cluster.structs.CameraAvStreamManagementClusterVideoResolutionStruct
-              .fromTlv(ContextSpecificTag(TAG_MAX_RESOLUTION), tlvReader)
-          )
-        } else {
-          Optional.empty()
-        }
-      val minBitRate =
-        if (tlvReader.isNextTag(ContextSpecificTag(TAG_MIN_BIT_RATE))) {
-          Optional.of(tlvReader.getUInt(ContextSpecificTag(TAG_MIN_BIT_RATE)))
-        } else {
-          Optional.empty()
-        }
-      val maxBitRate =
-        if (tlvReader.isNextTag(ContextSpecificTag(TAG_MAX_BIT_RATE))) {
-          Optional.of(tlvReader.getUInt(ContextSpecificTag(TAG_MAX_BIT_RATE)))
-        } else {
-          Optional.empty()
-        }
-      val minFragmentLen =
-        if (tlvReader.isNextTag(ContextSpecificTag(TAG_MIN_FRAGMENT_LEN))) {
-          Optional.of(tlvReader.getUShort(ContextSpecificTag(TAG_MIN_FRAGMENT_LEN)))
-        } else {
-          Optional.empty()
-        }
-      val maxFragmentLen =
-        if (tlvReader.isNextTag(ContextSpecificTag(TAG_MAX_FRAGMENT_LEN))) {
-          Optional.of(tlvReader.getUShort(ContextSpecificTag(TAG_MAX_FRAGMENT_LEN)))
-        } else {
-          Optional.empty()
-        }
-
+      val streamUsage = if (tlvReader.isNextTag(ContextSpecificTag(TAG_STREAM_USAGE))) {
+        Optional.of(tlvReader.getUByte(ContextSpecificTag(TAG_STREAM_USAGE)))
+      } else {
+        Optional.empty()
+      }
+      val videoCodec = if (tlvReader.isNextTag(ContextSpecificTag(TAG_VIDEO_CODEC))) {
+        Optional.of(tlvReader.getUByte(ContextSpecificTag(TAG_VIDEO_CODEC)))
+      } else {
+        Optional.empty()
+      }
+      val minFrameRate = if (tlvReader.isNextTag(ContextSpecificTag(TAG_MIN_FRAME_RATE))) {
+        Optional.of(tlvReader.getUShort(ContextSpecificTag(TAG_MIN_FRAME_RATE)))
+      } else {
+        Optional.empty()
+      }
+      val maxFrameRate = if (tlvReader.isNextTag(ContextSpecificTag(TAG_MAX_FRAME_RATE))) {
+        Optional.of(tlvReader.getUShort(ContextSpecificTag(TAG_MAX_FRAME_RATE)))
+      } else {
+        Optional.empty()
+      }
+      val minResolution = if (tlvReader.isNextTag(ContextSpecificTag(TAG_MIN_RESOLUTION))) {
+        Optional.of(matter.controller.cluster.structs.CameraAvStreamManagementClusterVideoResolutionStruct.fromTlv(ContextSpecificTag(TAG_MIN_RESOLUTION), tlvReader))
+      } else {
+        Optional.empty()
+      }
+      val maxResolution = if (tlvReader.isNextTag(ContextSpecificTag(TAG_MAX_RESOLUTION))) {
+        Optional.of(matter.controller.cluster.structs.CameraAvStreamManagementClusterVideoResolutionStruct.fromTlv(ContextSpecificTag(TAG_MAX_RESOLUTION), tlvReader))
+      } else {
+        Optional.empty()
+      }
+      val minBitRate = if (tlvReader.isNextTag(ContextSpecificTag(TAG_MIN_BIT_RATE))) {
+        Optional.of(tlvReader.getUInt(ContextSpecificTag(TAG_MIN_BIT_RATE)))
+      } else {
+        Optional.empty()
+      }
+      val maxBitRate = if (tlvReader.isNextTag(ContextSpecificTag(TAG_MAX_BIT_RATE))) {
+        Optional.of(tlvReader.getUInt(ContextSpecificTag(TAG_MAX_BIT_RATE)))
+      } else {
+        Optional.empty()
+      }
+      val minFragmentLen = if (tlvReader.isNextTag(ContextSpecificTag(TAG_MIN_FRAGMENT_LEN))) {
+        Optional.of(tlvReader.getUShort(ContextSpecificTag(TAG_MIN_FRAGMENT_LEN)))
+      } else {
+        Optional.empty()
+      }
+      val maxFragmentLen = if (tlvReader.isNextTag(ContextSpecificTag(TAG_MAX_FRAGMENT_LEN))) {
+        Optional.of(tlvReader.getUShort(ContextSpecificTag(TAG_MAX_FRAGMENT_LEN)))
+      } else {
+        Optional.empty()
+      }
+      
       tlvReader.exitContainer()
 
-      return CameraAvStreamManagementClusterVideoStreamChangedEvent(
-        videoStreamID,
-        streamUsage,
-        videoCodec,
-        minFrameRate,
-        maxFrameRate,
-        minResolution,
-        maxResolution,
-        minBitRate,
-        maxBitRate,
-        minFragmentLen,
-        maxFragmentLen,
-      )
+      return CameraAvStreamManagementClusterVideoStreamChangedEvent(videoStreamID, streamUsage, videoCodec, minFrameRate, maxFrameRate, minResolution, maxResolution, minBitRate, maxBitRate, minFragmentLen, maxFragmentLen)
     }
   }
 }
