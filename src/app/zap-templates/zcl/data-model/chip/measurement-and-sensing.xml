@@ -20,6 +20,7 @@ limitations under the License.
     <cluster code="0x0090"/>
     <cluster code="0x0091"/>
     <cluster code="0x0B07"/>
+    <cluster code="0x0430"/>
     <item name="Unspecified" value="0x0000"/>
     <item name="Voltage" value="0x0001"/>
     <item name="ActiveCurrent" value="0x0002"/>
