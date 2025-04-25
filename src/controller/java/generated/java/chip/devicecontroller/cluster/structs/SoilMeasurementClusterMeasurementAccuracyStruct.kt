@@ -24,7 +24,7 @@ import matter.tlv.TlvReader
 import matter.tlv.TlvWriter
 
 class SoilMeasurementClusterMeasurementAccuracyStruct(
-  val measurementType: Any,
+  val measurementType: UInt,
   val measured: Boolean,
   val minMeasuredValue: Long,
   val maxMeasuredValue: Long,
@@ -68,7 +68,7 @@ class SoilMeasurementClusterMeasurementAccuracyStruct(
       tlvReader: TlvReader,
     ): SoilMeasurementClusterMeasurementAccuracyStruct {
       tlvReader.enterStructure(tlvTag)
-      val measurementType = tlvReader.getAny(ContextSpecificTag(TAG_MEASUREMENT_TYPE))
+      val measurementType = tlvReader.getUInt(ContextSpecificTag(TAG_MEASUREMENT_TYPE))
       val measured = tlvReader.getBoolean(ContextSpecificTag(TAG_MEASURED))
       val minMeasuredValue = tlvReader.getLong(ContextSpecificTag(TAG_MIN_MEASURED_VALUE))
       val maxMeasuredValue = tlvReader.getLong(ContextSpecificTag(TAG_MAX_MEASURED_VALUE))

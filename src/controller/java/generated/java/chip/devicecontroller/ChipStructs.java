@@ -11463,7 +11463,7 @@ public static class SoilMeasurementClusterMeasurementAccuracyRangeStruct {
   }
 }
 public static class SoilMeasurementClusterMeasurementAccuracyStruct {
-  public Object measurementType;
+  public Integer measurementType;
   public Boolean measured;
   public Long minMeasuredValue;
   public Long maxMeasuredValue;
@@ -11475,7 +11475,7 @@ public static class SoilMeasurementClusterMeasurementAccuracyStruct {
   private static final long ACCURACY_RANGES_ID = 4L;
 
   public SoilMeasurementClusterMeasurementAccuracyStruct(
-    Object measurementType,
+    Integer measurementType,
     Boolean measured,
     Long minMeasuredValue,
     Long maxMeasuredValue,
@@ -11490,7 +11490,7 @@ public static class SoilMeasurementClusterMeasurementAccuracyStruct {
 
   public StructType encodeTlv() {
     ArrayList<StructElement> values = new ArrayList<>();
-    values.add(new StructElement(MEASUREMENT_TYPE_ID, new AnyType(measurementType)));
+    values.add(new StructElement(MEASUREMENT_TYPE_ID, new UIntType(measurementType)));
     values.add(new StructElement(MEASURED_ID, new BooleanType(measured)));
     values.add(new StructElement(MIN_MEASURED_VALUE_ID, new IntType(minMeasuredValue)));
     values.add(new StructElement(MAX_MEASURED_VALUE_ID, new IntType(maxMeasuredValue)));
@@ -11503,16 +11503,16 @@ public static class SoilMeasurementClusterMeasurementAccuracyStruct {
     if (tlvValue == null || tlvValue.type() != TLVType.Struct) {
       return null;
     }
-    Object measurementType = null;
+    Integer measurementType = null;
     Boolean measured = null;
     Long minMeasuredValue = null;
     Long maxMeasuredValue = null;
     ArrayList<ChipStructs.SoilMeasurementClusterMeasurementAccuracyRangeStruct> accuracyRanges = null;
     for (StructElement element: ((StructType)tlvValue).value()) {
       if (element.contextTagNum() == MEASUREMENT_TYPE_ID) {
-        if (element.value(BaseTLVType.class).type() == TLVType.Any) {
-          AnyType castingValue = element.value(AnyType.class);
-          measurementType = castingValue.value(Object.class);
+        if (element.value(BaseTLVType.class).type() == TLVType.UInt) {
+          UIntType castingValue = element.value(UIntType.class);
+          measurementType = castingValue.value(Integer.class);
         }
       } else if (element.contextTagNum() == MEASURED_ID) {
         if (element.value(BaseTLVType.class).type() == TLVType.Boolean) {

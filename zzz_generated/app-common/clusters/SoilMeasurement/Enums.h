@@ -24,7 +24,10 @@
 namespace chip {
 namespace app {
 namespace Clusters {
-namespace SoilMeasurement {} // namespace SoilMeasurement
+namespace SoilMeasurement {
+
+using MeasurementTypeEnum = Clusters::detail::MeasurementTypeEnum;
+} // namespace SoilMeasurement
 } // namespace Clusters
 } // namespace app
 } // namespace chip
