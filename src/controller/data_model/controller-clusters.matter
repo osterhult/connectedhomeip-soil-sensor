@@ -4545,6 +4545,7 @@ cluster ElectricalPowerMeasurement = 144 {
     kElectricalEnergy = 14;
     kReactiveEnergy = 15;
     kApparentEnergy = 16;
+    kSoilMoisture = 17;
   }
 
   enum PowerModeEnum : enum8 {
@@ -4652,6 +4653,7 @@ cluster ElectricalEnergyMeasurement = 145 {
     kElectricalEnergy = 14;
     kReactiveEnergy = 15;
     kApparentEnergy = 16;
+    kSoilMoisture = 17;
   }
 
   bitmap Feature : bitmap32 {
@@ -8635,6 +8637,39 @@ cluster RadonConcentrationMeasurement = 1071 {
   readonly attribute int16u clusterRevision = 65533;
 }
 
+/** This cluster provides an interface to soil measurement functionality, including configuration and provision of notifications of soil measurements. */
+provisional cluster SoilMeasurement = 1072 {
+  revision 1;
+
+  shared struct MeasurementAccuracyRangeStruct {
+    int64s rangeMin = 0;
+    int64s rangeMax = 1;
+    optional percent100ths percentMax = 2;
+    optional percent100ths percentMin = 3;
+    optional percent100ths percentTypical = 4;
+    optional int64u fixedMax = 5;
+    optional int64u fixedMin = 6;
+    optional int64u fixedTypical = 7;
+  }
+
+  shared struct MeasurementAccuracyStruct {
+    MeasurementTypeEnum measurementType = 0;
+    boolean measured = 1;
+    int64s minMeasuredValue = 2;
+    int64s maxMeasuredValue = 3;
+    MeasurementAccuracyRangeStruct accuracyRanges[] = 4;
+  }
+
+  readonly attribute MeasurementAccuracyStruct soilMoistureMeasurementLimits = 0;
+  readonly attribute nullable percent soilMoistureMeasuredValue = 1;
+  readonly attribute command_id generatedCommandList[] = 65528;
+  readonly attribute command_id acceptedCommandList[] = 65529;
+  readonly attribute event_id eventList[] = 65530;
+  readonly attribute attrib_id attributeList[] = 65531;
+  readonly attribute bitmap32 featureMap = 65532;
+  readonly attribute int16u clusterRevision = 65533;
+}
+
 /** Functionality to retrieve operational information about a managed Wi-Fi network. */
 cluster WiFiNetworkManagement = 1105 {
   revision 1;
@@ -11190,6 +11225,7 @@ cluster CommodityMetering = 2823 {
     kElectricalEnergy = 14;
     kReactiveEnergy = 15;
     kApparentEnergy = 16;
+    kSoilMoisture = 17;
   }
 
   struct MeteredQuantityStruct {

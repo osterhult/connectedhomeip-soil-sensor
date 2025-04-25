@@ -1585,6 +1585,7 @@ cluster ElectricalPowerMeasurement = 144 {
     kElectricalEnergy = 14;
     kReactiveEnergy = 15;
     kApparentEnergy = 16;
+    kSoilMoisture = 17;
   }
 
   enum PowerModeEnum : enum8 {
@@ -1692,6 +1693,7 @@ cluster ElectricalEnergyMeasurement = 145 {
     kElectricalEnergy = 14;
     kReactiveEnergy = 15;
     kApparentEnergy = 16;
+    kSoilMoisture = 17;
   }
 
   bitmap Feature : bitmap32 {

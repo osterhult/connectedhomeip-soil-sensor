@@ -99,11 +99,12 @@ enum class MeasurementTypeEnum : uint16_t
     kElectricalEnergy = 0x0E,
     kReactiveEnergy   = 0x0F,
     kApparentEnergy   = 0x10,
+    kSoilMoisture     = 0x11,
     // All received enum values that are not listed above will be mapped
     // to kUnknownEnumValue. This is a helper enum value that should only
     // be used by code to process how it handles receiving and unknown
     // enum value. This specific should never be transmitted.
-    kUnknownEnumValue = 17,
+    kUnknownEnumValue = 18,
 };
 
 // Enum for MeasurementUnitEnum

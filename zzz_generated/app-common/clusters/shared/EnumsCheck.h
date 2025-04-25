@@ -289,6 +289,7 @@ static auto __attribute__((unused)) EnsureKnownEnumValue(detail::MeasurementType
     case EnumType::kElectricalEnergy:
     case EnumType::kReactiveEnergy:
     case EnumType::kApparentEnergy:
+    case EnumType::kSoilMoisture:
         return val;
     default:
         return EnumType::kUnknownEnumValue;
